@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>My Portfolio</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Public+Sans:300,500&display=swap" rel="stylesheet">
+</head>
+<body>
+<style>
+  .cast{text-align: center}
+</style>
+  <div class="container-fluid mt-3">
+    <!-- jumbotron -->
+    <div class="jumbotron jumbotron-fluid bg-info text-white">
+      <div class="cast">
+        <img src="https://avatars2.githubusercontent.com/u/63062081?s=460&u=c825e641db05930707d666110fd936926229348e&v=4"
+             height="110"
+             width="110"
+             class="rounded-circle"
+        >
+        <h1 class="text-dark">Ashutosh Kumar Verma</h1>
+        <p class="bg-danger text-white">vermaashutosh345@gmail.com</p>
+        <p class="bg-dark text-white">MY PROJECTS</p>
+      </div>
+    </div>
+    <!-- responsive table -->
+    <div class="table-responsive">
+      <table class="table table-light table-bordered table-hover">
+        <thead>
+          <tr class="table-info">
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">URL</th>
+            <th scope="col">Language</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--
+            <tr>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
+            </tr>
+          -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+
+<script>
+
+            var request = new XMLHttpRequest()
+
+
+            request.open('GET', 'https://api.github.com/users/ashutosh77198/repos', true)
+
+                request.onload = function () {
+                  var data = JSON.parse(this.response);
+
+                  var statusHTML = '';
+                  $.each(data, function(i, status) {
+                    statusHTML += '<tr>';
+                    statusHTML += '<td>' + status.id + '</td>';
+                    statusHTML += '<td>' + status.name + '</td>';
+                    statusHTML += '<td>' + status.html_url + '</td>';
+                    statusHTML += '<td>' + status.language + '</td>';
+                    statusHTML += '</tr>';
+                  });
+                  $('tbody').html(statusHTML);
+                }
+
+
+            request.send();
+
+
+</script>
+
+</body>
+
+</html>
